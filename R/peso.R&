@@ -55,7 +55,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             ylim <- range(r, na.rm = TRUE)
             if (id.n > 0) 
                 ylim <- ylim + c(-1, 1) * 0.08 * diff(ylim)
-            plot(yh, r, xlab = "Predicciones", ylab = "Res韉uos estandarizados", 
+            plot(yh, r, xlab = "Predicciones", ylab = "Res铆duos estandarizados", 
                 main = main, ylim = ylim, type = "n", ...)
             panel(yh, r, ...)
             if (id.n > 0) {
@@ -68,8 +68,8 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         if (show[2]) {
             ylim <- range(r, na.rm = TRUE)
             ylim[2] <- ylim[2] + diff(ylim) * 0.075
-            qq <- qqnorm(r, ylab = "Res韉uos estandarizados", 
-                xlab = "Cuantiles te髍icos", main = main, ylim = ylim, 
+            qq <- qqnorm(r, ylab = "Res铆duos estandarizados", 
+                xlab = "Cuantiles te贸ricos", main = main, ylim = ylim, 
                 ...)
             qqline(r, lty = 3)
             if (id.n > 0) 
@@ -125,35 +125,35 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
             cex.lab = 1.2)
         plot(pes.res$dat$pes ~ pes.res$dat$tal, xlab = paste("Talla (", 
-            unid, ")",sep=""), ylab = " Peso (g)", main = "Relaci髇 Talla-Peso", 
+            unid, ")",sep=""), ylab = " Peso (g)", main = "Relaci贸n Talla-Peso", 
             pch = "+", col="darkgrey", ylim=c(min(pes.res$dat$pes)*0.9, max(pes.res$dat$pes)*1.1))
         lines(pes.res$dat$tal, fitted(pes.res$nls.ori), type = "l", 
             col = "red")
         res.acf <- residuals(pes.res$nls.ori)
         x.acf <- sample(res.acf, length(res.acf), replace = F)
         acf(x.acf, main = "Correlograma")
-        plot.ib(pes.res$nls.ori, which = 1, main = "Res韉uos vs Predicciones")
+        plot.ib(pes.res$nls.ori, which = 1, main = "Res铆duos vs Predicciones")
         plot.ib(pes.res$nls.ori, which = 2, main = "Normal QQ Plot")
         hist(pes.res$nls.boot$t[, 1], main = "BOOTSTRAP", xlab = "a", 
             ylab = "Frecuencia", col = "grey")
         hist(pes.res$nls.boot$t[, 2], main = "BOOTSTRAP", xlab = "b", 
             ylab = "Frecuencia", col = "grey")
-        qqnorm(pes.res$nls.boot$t[, 1], xlab = "Cuantiles te髍icos", 
+        qqnorm(pes.res$nls.boot$t[, 1], xlab = "Cuantiles te贸ricos", 
             ylab = "a", main = "")
         qqline(pes.res$nls.boot$t[, 1])
-        qqnorm(pes.res$nls.boot$t[, 2], xlab = "Cuantiles te髍icos", 
+        qqnorm(pes.res$nls.boot$t[, 2], xlab = "Cuantiles te贸ricos", 
             ylab = "b", main = "")
         qqline(pes.res$nls.boot$t[, 2])
-        mtext(outer = T, "Relaci髇 Talla-Peso\nGr醘icos Diagn髎tico" , 
+        mtext(outer = T, "Relaci贸n Talla-Peso\nGr谩ficos Diagn贸stico" , 
             side = 3, cex = 1.2)
         dev.off()
         sink(file = paste(especie, "_peso_resultados.txt", sep = ""))
-        cat("D韆:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
+        cat("D铆a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
             format(Sys.time(), "%X"))
         cat("\n")
         cat("\n")
         cat("\n")
-        cat("RELACI覰 TALLA-PESO: AJUSTE NO-LINEAL", "\n")
+        cat("RELACI脫N TALLA-PESO: AJUSTE NO-LINEAL", "\n")
         cat("\n")
         cat("*******************************************************", 
             "\n")
@@ -173,7 +173,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         cat("\n")
         cat("\n")
         cat("\n")
-        cat("PAR罬ETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
+        cat("PAR脕METROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
         cat("\n")
         cat("\n")
         print(pes.res$parametros)
@@ -192,35 +192,35 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
             cex.lab = 1.2)
         plot(pes.m.res$dat$pes ~ pes.m.res$dat$tal, xlab = paste("Talla (", 
-            unid, ")", sep=""), ylab = " Peso (g)", main = "Relaci髇 Talla-Peso", 
+            unid, ")", sep=""), ylab = " Peso (g)", main = "Relaci贸n Talla-Peso", 
             pch = "+", col="darkgrey",ylim=c(min(pes.m.res$dat$pes)*0.9, max(pes.m.res$dat$pes)*1.1))
         lines(pes.m.res$dat$tal, fitted(pes.m.res$nls.ori), type = "l", 
             col = "red")
         res.acf <- residuals(pes.m.res$nls.ori)
         x.acf <- sample(res.acf, length(res.acf), replace = F)
         acf(x.acf, main = "Correlograma")
-        plot.ib(pes.m.res$nls.ori, which = 1, main = "Res韉uos vs Predicciones")
+        plot.ib(pes.m.res$nls.ori, which = 1, main = "Res铆duos vs Predicciones")
         plot.ib(pes.m.res$nls.ori, which = 2, main = "Normal QQ Plot")
         hist(pes.m.res$nls.boot$t[, 1], main = "BOOTSTRAP", xlab = "a", 
             ylab = "Frecuencia", col = "blue")
         hist(pes.m.res$nls.boot$t[, 2], main = "BOOTSTRAP", xlab = "b", 
             ylab = "Frecuencia", col = "blue")
-        qqnorm(pes.m.res$nls.boot$t[, 1], xlab = "Cuantiles te髍icos", 
+        qqnorm(pes.m.res$nls.boot$t[, 1], xlab = "Cuantiles te贸ricos", 
             ylab = "a", main = "")
         qqline(pes.m.res$nls.boot$t[, 1])
-        qqnorm(pes.m.res$nls.boot$t[, 2], xlab = "Cuantiles te髍icos", 
+        qqnorm(pes.m.res$nls.boot$t[, 2], xlab = "Cuantiles te贸ricos", 
             ylab = "b", main = "")
         qqline(pes.m.res$nls.boot$t[, 2])
-        mtext(outer = T, "MACHOS: Relaci髇 Talla-Peso\nGr醘icos Diagn髎tico" , 
+        mtext(outer = T, "MACHOS: Relaci贸n Talla-Peso\nGr谩ficos Diagn贸stico" , 
             side = 3, cex = 1.2)
         dev.off()
         sink(file = paste(especie, "_pesomachos_resultados.txt", sep = ""))
-        cat("D韆:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
+        cat("D铆a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
             format(Sys.time(), "%X"))
         cat("\n")
         cat("\n")
         cat("\n")
-        cat("RELACI覰 TALLA-PESO: AJUSTE NO-LINEAL", "\n")
+        cat("RELACI脫N TALLA-PESO: AJUSTE NO-LINEAL", "\n")
         cat("\n")
         cat("*******************************************************", 
             "\n")
@@ -238,7 +238,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         print(pes.m.res$nls.ori)
         cat("\n")
         cat("\n")
-        cat("PAR罬ETROS ESTIMADOS: ORIGINALES-BOOTSTRAP ", "\n")
+        cat("PAR脕METROS ESTIMADOS: ORIGINALES-BOOTSTRAP ", "\n")
         cat("\n")
         print(pes.m.res$parametros)
         sink()
@@ -251,35 +251,35 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
             cex.lab = 1.2)
         plot(pes.f.res$dat$pes ~ pes.f.res$dat$tal, xlab = paste("Talla (", 
-            unid, ")",sep=""), ylab = " Peso (g)", main = "Relaci髇 Talla-Peso", 
+            unid, ")",sep=""), ylab = " Peso (g)", main = "Relaci贸n Talla-Peso", 
             pch = "+",col="darkgrey",ylim=c(min(pes.f.res$dat$pes)*0.9, max(pes.f.res$dat$pes)*1.1))
         lines(pes.f.res$dat$tal, fitted(pes.f.res$nls.ori), type = "l", 
             col = "red")
         res.acf <- residuals(pes.f.res$nls.ori)
         x.acf <- sample(res.acf, length(res.acf), replace = F)
         acf(x.acf, main = "Correlograma")
-        plot.ib(pes.f.res$nls.ori, which = 1, main = "Res韉uos vs Predicciones")
+        plot.ib(pes.f.res$nls.ori, which = 1, main = "Res铆duos vs Predicciones")
         plot.ib(pes.f.res$nls.ori, which = 2, main = "Normal QQ Plot")
         hist(pes.f.res$nls.boot$t[, 1], main = "BOOTSTRAP", xlab = "a", 
             ylab = "Frecuencia", col = "pink")
         hist(pes.f.res$nls.boot$t[, 2], main = "BOOTSTRAP", xlab = "b", 
             ylab = "Frecuencia", col = "pink")
-        qqnorm(pes.f.res$nls.boot$t[, 1], xlab = "Cuantiles te髍icos", 
+        qqnorm(pes.f.res$nls.boot$t[, 1], xlab = "Cuantiles te贸ricos", 
             ylab = "a", main = "")
         qqline(pes.f.res$nls.boot$t[, 1])
-        qqnorm(pes.f.res$nls.boot$t[, 2], xlab = "Cuantiles te髍icos", 
+        qqnorm(pes.f.res$nls.boot$t[, 2], xlab = "Cuantiles te贸ricos", 
             ylab = "b", main = "")
         qqline(pes.f.res$nls.boot$t[, 2])
-        mtext(outer = T, "HEMBRAS: Relaci髇 Talla-Peso\nGr醘icos Diagn髎tico" , 
+        mtext(outer = T, "HEMBRAS: Relaci贸n Talla-Peso\nGr谩ficos Diagn贸stico" , 
             side = 3, cex = 1.2)
         dev.off()
         sink(file = paste(especie, "_pesohembras_resultados.txt", sep = ""))
-        cat("D韆:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
+        cat("D铆a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
             format(Sys.time(), "%X"))
         cat("\n")
         cat("\n")
         cat("\n")
-        cat("RELACI覰 TALLA-PESO: AJUSTE NO-LINEAL", "\n")
+        cat("RELACI脫N TALLA-PESO: AJUSTE NO-LINEAL", "\n")
         cat("\n")
         cat("*******************************************************", 
             "\n")
@@ -297,7 +297,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         print(pes.f.res$nls.ori)
         cat("\n")
         cat("\n")
-        cat("PAR罬ETROS ESTIMADOS: ORIGINALES-BOOTSTRAP ", "\n")
+        cat("PAR脕METROS ESTIMADOS: ORIGINALES-BOOTSTRAP ", "\n")
         cat("\n")
         print(pes.f.res$parametros)
         sink()
