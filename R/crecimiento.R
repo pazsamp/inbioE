@@ -55,7 +55,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             ylim <- range(r, na.rm = TRUE)
             if (id.n > 0) 
                 ylim <- ylim + c(-1, 1) * 0.08 * diff(ylim)
-            plot(yh, r, xlab = "Predicciones", ylab = "Resíduos estandarizados", 
+            plot(yh, r, xlab = "Predicciones", ylab = "ResÃ­duos estandarizados", 
                 main = main, ylim = ylim, type = "n", ...)
             panel(yh, r, ...)
             if (id.n > 0) {
@@ -68,8 +68,8 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         if (show[2]) {
             ylim <- range(r, na.rm = TRUE)
             ylim[2] <- ylim[2] + diff(ylim) * 0.075
-            qq <- qqnorm(r, ylab = "Resíduos estandarizados", 
-                xlab = "Cuantiles teóricos", main = main, ylim = ylim, 
+            qq <- qqnorm(r, ylab = "ResÃ­duos estandarizados", 
+                xlab = "Cuantiles teÃ³ricos", main = main, ylim = ylim, 
                 ...)
             qqline(r, lty = 3)
             if (id.n > 0) 
@@ -92,7 +92,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         cre.tal.fit <- coef(cre.tal.ori)
         cre.tal.fit <- as.vector(cre.tal.fit)
         names(cre.tal.fit) <- c(paste("Linf(", unid, ")",sep=""), 
-                                "K(año-1)", "t0(año)")
+                                "K(aÃ±o-1)", "t0(aÃ±o)")
         Li.ori <- cre.tal.fit[1]
         K.ori <- cre.tal.fit[2]
         t0.ori <- cre.tal.fit[3]
@@ -114,7 +114,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         par.boot <- rbind(Li.boot, K.tal.boot, t0.boot)
         par.ori <- round(coef(cre.tal.ori), 6)
         par.tal <- cbind(par.ori, par.boot)
-        dimnames(par.tal)[[1]] <- c(paste("Linf(", unid, ")",sep=""), "k (año-1)", "t0 (año)")
+        dimnames(par.tal)[[1]] <- c(paste("Linf(", unid, ")",sep=""), "k (aÃ±o-1)", "t0 (aÃ±o)")
         dimnames(par.tal)[[2]] <- c("Estima original", "Estima boot", "CV boot")
         if (sexo == "Ambos") 
           pdf(file = paste(especie,"_cretal_plots.pdf", sep = ""), width = 9, 
@@ -129,34 +129,34 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
                 widths = c(3, 3), heights = c(1.5, 1.5))
         par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
                 cex.lab = 1.2)
-        plot(cre.tal.dat$tal ~ cre.tal.dat$eda, xlab = "Edad (años)", ylab = paste("Talla (", unid, ")",sep=""), main = "Crecimiento en Talla", 
+        plot(cre.tal.dat$tal ~ cre.tal.dat$eda, xlab = "Edad (aÃ±os)", ylab = paste("Talla (", unid, ")",sep=""), main = "Crecimiento en Talla", 
                 pch = 1, ylim=c(min(cre.tal.dat$tal)*0.9,max(cre.tal.dat$tal)*1.1))
         lines(cre.tal.dat$eda, cre.tal.fit[1] * (1 - exp(-cre.tal.fit[2] * (cre.tal.dat$eda - cre.tal.fit[3]))), type = "l", 
             col = "red", lty = 2, lwd = 2)
         lines(cre.tal.dat$eda, median(Li.b) * (1 - exp(-median(K.tal.b) * (cre.tal.dat$eda - median(t0.b)))), type = "l", 
                 col = "blue", lty = 3, lwd = 2)
-        legend("bottomright",c("Predicción Original", "Predicción Bootstrap"), lwd = 1, lty = 1, col = c("red", "blue"), cex=0.8, bty="n")
-            mtext(outer = T, " Crecimiento en Talla: Gráficos Diagnóstico", side = 3, cex = 1.2)     
+        legend("bottomright",c("PredicciÃ³n Original", "PredicciÃ³n Bootstrap"), lwd = 1, lty = 1, col = c("red", "blue"), cex=0.8, bty="n")
+            mtext(outer = T, " Crecimiento en Talla: GrÃ¡ficos DiagnÃ³stico", side = 3, cex = 1.2)     
         
         res.acf <- residuals(cre.tal.ori)
         x.acf <- sample(res.acf, length(res.acf), replace = F)
         acf(x.acf, main = "Correlograma")
-        plot.ib(cre.tal.ori, which = 1, main = "Resíduos vs Predicciones")
+        plot.ib(cre.tal.ori, which = 1, main = "ResÃ­duos vs Predicciones")
         plot.ib(cre.tal.ori, which = 2, main = "Normal QQ Plot")
         layout(matrix(c(1, 2, 3, 4, 5, 6), 3, 2, byrow = F),widths = c(3, 3), heights = c(1.5, 1.5))
         par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, cex.lab = 1.2)
         hist(Li.b, main = "BOOTSTRAP", xlab = paste("Linf (", unid, ")",sep=""), ylab = "Frecuencia")
-        hist(K.tal.b, main = "BOOTSTRAP", xlab = "K (año-1)", ylab = "Frecuencia")
-        hist(t0.b, main = "BOOTSTRAP", xlab = "t0 (año)", ylab = "Frecuencia")
-        qqnorm(Li.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-Linf ", main = "BOOTSTRAP")
+        hist(K.tal.b, main = "BOOTSTRAP", xlab = "K (aÃ±o-1)", ylab = "Frecuencia")
+        hist(t0.b, main = "BOOTSTRAP", xlab = "t0 (aÃ±o)", ylab = "Frecuencia")
+        qqnorm(Li.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-Linf ", main = "BOOTSTRAP")
         qqline(Li.b)
-        qqnorm(K.tal.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-K ", 
+        qqnorm(K.tal.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-K ", 
                 main = "BOOTSTRAP")
         qqline(K.tal.b)
-        qqnorm(t0.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-t0 ", 
+        qqnorm(t0.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-t0 ", 
                 main = "BOOTSTRAP")
         qqline(t0.b)
-        mtext(outer = T, " Crecimiento en Talla: Gráficos Diagnóstico" , 
+        mtext(outer = T, " Crecimiento en Talla: GrÃ¡ficos DiagnÃ³stico" , 
                 side = 3, cex = 1.2)
         dev.off()
         }
@@ -166,7 +166,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         detach(cre.tal.dat)
         cre.tal.fit <- coef(cre.tal.ori)
         cre.tal.fit <- as.vector(cre.tal.fit)
-        names(cre.tal.fit) <- c("K (año-1)", "t0 (año)")
+        names(cre.tal.fit) <- c("K (aÃ±o-1)", "t0 (aÃ±o)")
         K.ori <- cre.tal.fit[1]
         t0.ori <- cre.tal.fit[2]
         cre.tal.fun <- function(data) coef(nls(tal ~ 
@@ -184,7 +184,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         par.boot <- rbind(K.tal.boot, t0.boot)
         par.ori <- round(coef(cre.tal.ori), 6)
         par.tal <- cbind(par.ori, par.boot)
-        dimnames(par.tal)[[1]] <- c("k(año-1)", "t0(año)")
+        dimnames(par.tal)[[1]] <- c("k(aÃ±o-1)", "t0(aÃ±o)")
         dimnames(par.tal)[[2]] <- c("Estima original", "Estima boot", "CV boot")
             if (sexo == "Ambos") 
                 pdf(file = paste(especie, "_cretal_plots.pdf", sep = ""), width = 9, 
@@ -199,7 +199,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
                 widths = c(3, 3), heights = c(1.5, 1.5))
             par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
                 cex.lab = 1.2)
-            plot(cre.tal.dat$tal ~ cre.tal.dat$eda, xlab = "Edad (años)", 
+            plot(cre.tal.dat$tal ~ cre.tal.dat$eda, xlab = "Edad (aÃ±os)", 
                 ylab = paste("Talla (", unid, ")",sep=""), main = "Crecimiento en Talla", 
                 pch = 1)
             lines(cre.tal.dat$eda, Li * (1 - exp(-cre.tal.fit[1] * 
@@ -208,32 +208,32 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             lines(cre.tal.dat$eda, Li * (1 - exp(-median(K.tal.b) * 
                 (cre.tal.dat$eda - median(t0.b)))), type = "l", 
                 col = "blue", lty = 3, lwd = 2)
-            legend("bottomright", c("Predicción Original", 
-                "Predicción Bootstrap"), lwd = 1, lty = 1, col = c("red", 
+            legend("bottomright", c("PredicciÃ³n Original", 
+                "PredicciÃ³n Bootstrap"), lwd = 1, lty = 1, col = c("red", 
                 "blue"),cex=0.8, bty="n")
             res.acf <- residuals(cre.tal.ori)
             x.acf <- sample(res.acf, length(res.acf), replace = F)
             acf(x.acf, main = "Correlograma")
-            plot.ib(cre.tal.ori, which = 1, main = "Resíduos vs Predicciones")
+            plot.ib(cre.tal.ori, which = 1, main = "ResÃ­duos vs Predicciones")
             plot.ib(cre.tal.ori, which = 2, main = "Normal QQ Plot")
-            mtext(outer = T, paste("Crecimiento en Talla: Gráficos Diagnóstico \nLinf (fija)=" , 
+            mtext(outer = T, paste("Crecimiento en Talla: GrÃ¡ficos DiagnÃ³stico \nLinf (fija)=" , 
                 Li, unid), side = 3, cex = 1.2)
             
             layout(matrix(c(1, 2, 3, 4), 2, 2, byrow = F), widths = c(3, 
                 3), heights = c(1.5, 1.5))
             par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
                 cex.lab = 1.2)
-            hist(K.tal.b, main = "BOOTSTRAP", xlab = "K (año-1)", 
+            hist(K.tal.b, main = "BOOTSTRAP", xlab = "K (aÃ±o-1)", 
                 ylab = "Frecuencia")
-            hist(t0.b, main = "BOOTSTRAP", xlab = "t0 (año)", 
+            hist(t0.b, main = "BOOTSTRAP", xlab = "t0 (aÃ±o)", 
                 ylab = "Frecuencia")
-            qqnorm(K.tal.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-K ", 
+            qqnorm(K.tal.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-K ", 
                 main = "BOOTSTRAP")
             qqline(K.tal.b)
-            qqnorm(t0.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-t0 ", 
+            qqnorm(t0.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-t0 ", 
                 main = "BOOTSTRAP")
             qqline(t0.b)
-            mtext(outer = T, paste("Crecimiento en Talla: Gráficos Diagnóstico\nLinf (fija)=" , 
+            mtext(outer = T, paste("Crecimiento en Talla: GrÃ¡ficos DiagnÃ³stico\nLinf (fija)=" , 
                 Li, unid), side = 3, cex = 1.2)
             dev.off()
         }
@@ -243,7 +243,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             sink(file = paste(especie, "_cretalmachos_resultados.txt", sep = ""))
         if (sexo == "Hembras") 
             sink(file = paste(especie, "_cretalhembras_resultados.txt", sep = ""))
-        cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
+        cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
             format(Sys.time(), "%X"))
         cat("\n")
         cat("\n")
@@ -267,7 +267,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         print(cre.tal.ori,justify="right")
         cat("\n")
         cat("\n")
-        cat("PARÁMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
+        cat("PARÃMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
         cat("\n")
         print(par.tal,justify="right")
         sink()
@@ -285,8 +285,8 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             detach(cre.pes.dat)
             cre.pes.fit <- coef(cre.pes.ori)
             cre.pes.fit <- as.vector(cre.pes.fit)
-            names(cre.pes.fit) <- c("Winf (g)", "k (año-1)", 
-                "t0 (año)")
+            names(cre.pes.fit) <- c("Winf (g)", "k (aÃ±o-1)", 
+                "t0 (aÃ±o)")
             Wi.ori <- cre.pes.fit[1]
             K.pes.ori <- cre.pes.fit[2]
             t0.pes.ori <- cre.pes.fit[3]
@@ -304,7 +304,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             par.pes.boot <- rbind(Wi.boot, K.pes.boot, t0.pes.boot)
             par.pes.ori <- round(coef(cre.pes.ori), 6)
             par.pes <- cbind(par.pes.ori, par.pes.boot)
-            dimnames(par.pes)[[1]] <- c("Winf(g)", "k(año-1)", "t0(año)")
+            dimnames(par.pes)[[1]] <- c("Winf(g)", "k(aÃ±o-1)", "t0(aÃ±o)")
             dimnames(par.pes)[[2]] <- c("Estima original", "Estima boot", 
                 "CV boot")
             if (sexo == "Ambos") 
@@ -320,7 +320,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
                 widths = c(1, 1), heights = c(1, 1))
             par(oma = c(1, 1, 2, 1), font = 3, cex = 1, cex.main = 1.2, 
                 cex.lab = 1.2)
-            plot(cre.pes.dat$pes ~ cre.pes.dat$eda, xlab = "Edad (años)", 
+            plot(cre.pes.dat$pes ~ cre.pes.dat$eda, xlab = "Edad (aÃ±os)", 
                 ylab = "Peso (g)", main = "Crecimiento en Peso", 
                 pch = 1)
             lines(cre.pes.dat$eda, cre.pes.fit[1] * (1 - exp(-cre.pes.fit[2] * 
@@ -329,15 +329,15 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             lines(cre.pes.dat$eda, median(Wi.b) * (1 - exp(-median(K.pes.b) * 
                 (cre.pes.dat$eda - median(t0.pes.b))))^b, type = "l", 
                 col = "blue", lty = 3, lwd = 2)
-            legend("bottomright", c("Predicción Original", 
-                "Predicción Bootstrap"), lwd = 1, lty = 1, col = c("red", 
+            legend("bottomright", c("PredicciÃ³n Original", 
+                "PredicciÃ³n Bootstrap"), lwd = 1, lty = 1, col = c("red", 
                 "blue"),cex=0.8,bty="n")
             res.acf <- residuals(cre.pes.ori)
             x.acf <- sample(res.acf, length(res.acf), replace = F)
             acf(x.acf, main = "Correlograma")
-            plot.ib(cre.pes.ori, which = 1, main = "Resíduos vs Predicciones")
+            plot.ib(cre.pes.ori, which = 1, main = "ResÃ­duos vs Predicciones")
             plot.ib(cre.pes.ori, which = 2, main = "Normal QQ Plot")
-            mtext(outer = T, " Crecimiento en Peso: Gráficos Diagnóstico" , 
+            mtext(outer = T, " Crecimiento en Peso: GrÃ¡ficos DiagnÃ³stico" , 
                 side = 3, cex = 1.2)
             layout(matrix(c(1, 2, 3, 4, 5, 6), 3, 2, byrow = F), 
                 widths = c(3, 3), heights = c(1.5, 1.5))
@@ -345,20 +345,20 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
                 cex.lab = 1.2)
             hist(Wi.b, main = "BOOTSTRAP", xlab = "Winf (g)", 
                 ylab = "Frecuencia")
-            hist(K.pes.b, main = "BOOTSTRAP", xlab = "K (año-1)", 
+            hist(K.pes.b, main = "BOOTSTRAP", xlab = "K (aÃ±o-1)", 
                 ylab = "Frecuencia")
-            hist(t0.pes.b, main = "BOOTSTRAP", xlab = "t0 (año)", 
+            hist(t0.pes.b, main = "BOOTSTRAP", xlab = "t0 (aÃ±o)", 
                 ylab = "Frecuencia")
-            qqnorm(Wi.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-Winf ", 
+            qqnorm(Wi.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-Winf ", 
                 main = "BOOTSTRAP")
             qqline(Wi.b)
-            qqnorm(K.pes.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-K ", 
+            qqnorm(K.pes.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-K ", 
                 main = "BOOTSTRAP")
             qqline(K.pes.b)
-            qqnorm(t0.pes.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-t0 ", 
+            qqnorm(t0.pes.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-t0 ", 
                 main = "BOOTSTRAP")
             qqline(t0.pes.b)
-            mtext(outer = T, " Crecimiento en Peso: Gráficos Diagnóstico" , 
+            mtext(outer = T, " Crecimiento en Peso: GrÃ¡ficos DiagnÃ³stico" , 
                 side = 3, cex = 1.2)
             dev.off()
         }
@@ -370,7 +370,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             detach(cre.pes.dat)
             cre.pes.fit <- coef(cre.pes.ori)
             cre.pes.fit <- as.vector(cre.pes.fit)
-            names(cre.pes.fit) <- c("K (año-1)", "t0 (año)")
+            names(cre.pes.fit) <- c("K (aÃ±o-1)", "t0 (aÃ±o)")
             K.pes.ori <- cre.pes.fit[1]
             t0.pes.ori <- cre.pes.fit[2]
             cre.pes.fun <- function(data) coef(nls(pes ~ 
@@ -385,7 +385,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             par.pes.boot <- rbind(K.pes.boot, t0.pes.boot)
             par.pes.ori <- round(coef(cre.pes.ori), 6)
             par.pes <- cbind(par.pes.ori, par.pes.boot)
-            dimnames(par.pes)[[1]] <- c("k(año-1)", "t0(año)")
+            dimnames(par.pes)[[1]] <- c("k(aÃ±o-1)", "t0(aÃ±o)")
             dimnames(par.pes)[[2]] <- c("Estima original", "Estima boot", 
                 "CV boot")
             if (sexo == "Ambos") 
@@ -401,7 +401,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
                 widths = c(1, 1), heights = c(1, 1))
             par(oma = c(1, 1, 2, 1), font = 3, cex = 1, cex.main = 1.2, 
                 cex.lab = 1.2)
-            plot(cre.pes.dat$pes ~ cre.pes.dat$eda, xlab = "Edad (años)", 
+            plot(cre.pes.dat$pes ~ cre.pes.dat$eda, xlab = "Edad (aÃ±os)", 
                 ylab = "Peso (g)", main = "Crecimiento en Peso", 
                 pch = 1)
             lines(cre.pes.dat$eda, Wi * (1 - exp(-cre.pes.fit[1] * 
@@ -410,31 +410,31 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             lines(cre.pes.dat$eda, Wi * (1 - exp(-median(K.pes.b) * 
                 (cre.pes.dat$eda - median(t0.pes.b))))^b, type = "l", 
                 col = "blue", lty = 3, lwd = 2)
-            legend("bottomright",c("Predicción Original", 
-                "Predicción Bootstrap"), lwd = 1, lty = 1, col = c("red", 
+            legend("bottomright",c("PredicciÃ³n Original", 
+                "PredicciÃ³n Bootstrap"), lwd = 1, lty = 1, col = c("red", 
                 "blue"), cex=0.8, bty="n")
             res.acf <- residuals(cre.pes.ori)
             x.acf <- sample(res.acf, length(res.acf), replace = F)
             acf(x.acf, main = "Correlograma")
-            plot.ib(cre.pes.ori, which = 1, main = "Resíduos vs Predicciones")
+            plot.ib(cre.pes.ori, which = 1, main = "ResÃ­duos vs Predicciones")
             plot.ib(cre.pes.ori, which = 2, main = "Normal QQ Plot")
-            mtext(outer = T, paste("Crecimiento en Peso: Gráficos Diagnóstico\nWinf (fijo)=" , 
+            mtext(outer = T, paste("Crecimiento en Peso: GrÃ¡ficos DiagnÃ³stico\nWinf (fijo)=" , 
                 Wi, "g"), side = 3, cex = 1.2)
             layout(matrix(c(1, 2, 3, 4), 2, 2, byrow = F), widths = c(3, 
                 3), heights = c(1.5, 1.5))
             par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
                 cex.lab = 1.2)
-            hist(K.pes.b, main = "BOOTSTRAP", xlab = "K (año-1)", 
+            hist(K.pes.b, main = "BOOTSTRAP", xlab = "K (aÃ±o-1)", 
                 ylab = "Frecuencia")
-            hist(t0.pes.b, main = "BOOTSTRAP", xlab = "t0 (año)", 
+            hist(t0.pes.b, main = "BOOTSTRAP", xlab = "t0 (aÃ±o)", 
                 ylab = "Frecuencia")
-            qqnorm(K.pes.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-K ", 
+            qqnorm(K.pes.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-K ", 
                 main = "BOOTSTRAP")
             qqline(K.pes.b)
-            qqnorm(t0.pes.b, xlab = "Cuantiles teóricos", ylab = "Cuantiles-t0 ", 
+            qqnorm(t0.pes.b, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-t0 ", 
                 main = "BOOTSTRAP")
             qqline(t0.pes.b)
-            mtext(outer = T, paste("Crecimiento en Peso: Gráficos Diagnóstico\nWinf (fijo)=" , 
+            mtext(outer = T, paste("Crecimiento en Peso: GrÃ¡ficos DiagnÃ³stico\nWinf (fijo)=" , 
                 Wi, "g"), side = 3, cex = 1.2)
             dev.off()
         }
@@ -444,7 +444,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
             sink(file = paste(especie, "_crepesomachos_resultados.txt", sep = ""))
         if (sexo == "Hembras") 
             sink(file = paste(especie, "_crepesohembras_resultados.txt", sep = ""))
-        cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
+        cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
             format(Sys.time(), "%X"))
         cat("\n")
         cat("\n")
@@ -468,7 +468,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", sex = F,
         print(cre.pes.ori,justify="right")
         cat("\n")
         cat("\n")
-        cat("PARÁMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
+        cat("PARÃMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
         cat("\n")
         print(par.pes, justify="right")
         sink()
