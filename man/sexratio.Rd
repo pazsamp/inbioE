@@ -2,7 +2,7 @@
 \alias{sexratio}
 \title{Sexratio por Talla y Edad}
 \description{
-Calcula el porcentaje de hembras por talla y por edad, y su coeficiente de variaci髇 mediante bootstrap no param閠rico.
+Calcula el porcentaje de hembras por talla y por edad, y su coeficiente de variaci贸n mediante bootstrap no param茅trico.
 ** Sexratio= (hembras/(hembras+machos)
 }
 \usage{
@@ -10,17 +10,17 @@ sexratio(especie = "nombre especie", cl = 1, unid = "cm", edad = T, n = 1000)
 }
 
 \arguments{
-  \item{especie}{Nombre del archivo donde est醤 los datos de entrada, sin la extensi髇 y sin el directorio.}
+  \item{especie}{Nombre del archivo donde est谩n los datos de entrada, sin la extensi贸n y sin el directorio.}
   \item{cl}{Intervalo de talla usado en la sexratio por talla. El valor por defecto es 1.}
   \item{unid}{Unidad de los datos de talla: cm o mm. Por defecto unid="cm".}
   \item{edad}{Si edad=T la rutina calcula el sexratio por edad; Si edad=F la rutina no calcula sexratio por edad. Por defecto edad = T.}
-  \item{n}{N鷐ero de r閜licas bootstrap. El n鷐ero recomendado es 1000.}
+  \item{n}{N煤mero de r茅plicas bootstrap. El n煤mero recomendado es 1000.}
 }
 
 \value{
-Archivo "txt" con los resultados de sexratio por talla y su coeficiente de variaci髇 global y los resultados para sexratio por edad y coeficiente de variaci髇 global.
+Archivo "txt" con los resultados de sexratio por talla y su coeficiente de variaci贸n global y los resultados para sexratio por edad y coeficiente de variaci贸n global.
 
-Archivo "pdf" con dos gr醘icas, una gr醘ico del sexratio y coeficiente de variaci髇 por talla y otra del sexratio y coeficiente de variaci髇 por edad.
+Archivo "pdf" con dos gr谩ficas, una gr谩fico del sexratio y coeficiente de variaci贸n por talla y otra del sexratio y coeficiente de variaci贸n por edad.
 }
  
 \author{Paz Sampedro}
