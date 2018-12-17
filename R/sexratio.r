@@ -111,7 +111,7 @@ sexratio <-
     colnames(res.tot.eda) <- c("%original","CV(weighted mean)", "n")
     path <- getwd()
     sink(file = paste(species, "_sexratio_results.txt", sep = ""))
-    cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", "Time:", 
+    cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Time:", 
         format(Sys.time(), "%X"))
     cat("\n")
     cat("\n")
@@ -162,7 +162,7 @@ sexratio <-
       axis(4)
       mtext("CV",side=4,line=3)
       par(new=TRUE)
-      plot(rese[, 2] ~ rese[, 1], xlab = "Edad (años)", ylab = " % Hembras", 
+      plot(rese[, 2] ~ rese[, 1], xlab = "Edad (aÃ±os)", ylab = " % Hembras", 
             main = "Sexratio Edad", type="b", pch=19, col="darkgreen")
       legend("top",col=c("darkgreen","red"),lty=1,pch=c(19,-1), merge=TRUE, bty="n",legend=c("% Hembras","CV"))
             }
