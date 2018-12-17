@@ -1,0 +1,20 @@
+Package: inbioE
+Type: Package
+Title: Incertidumbre Parámetros Biológicos versión Inglés
+Version: 
+Date: 2018-12-17
+Author: 
+Maintainer: 
+Depends:
+    R (>= )
+Imports:
+    boot 
+Suggests: 
+   
+Description: A collection of functions. The functions
+    include tools for exporting and plotting results.
+License: 
+LazyLoad: yes
+URL: 
+RoxygenNote: 
+VignetteBuilder: knitr
