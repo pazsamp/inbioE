@@ -5,7 +5,7 @@
 inbio (INcertidumbre BIOlogicos)
 }
 \description{
-Conjunto de funciones para el c·lculo de par·metros biolÛgicos y su incertidumbre asociada mediante bootstrap no paramÈtrico.
+Conjunto de funciones para el c√°lculo de par√°metros biol√≥gicos y su incertidumbre asociada mediante bootstrap no param√©trico.
 }
 
 \details{
@@ -27,11 +27,11 @@ Paz Sampedro
 
   Efron, B. 1979. Bootstrap methods: another look at the jackknife. Annals of Statistics, 7. 1-26 p.
 
-  Gros, P., Laurec, A. & H. Dupouy. 1987. Estimation des parameters de croissance apport des techniques de reechantillonnage (Bootstrap & Jackniffe) et des statistiques robustes (MÈdianes et modes).  ICES ComitÈ des statistiques,  CM 1987/D: 10, 25pp.
+  Gros, P., Laurec, A. & H. Dupouy. 1987. Estimation des parameters de croissance apport des techniques de reechantillonnage (Bootstrap & Jackniffe) et des statistiques robustes (M√©dianes et modes).  ICES Comit√© des statistiques,  CM 1987/D: 10, 25pp.
 
   Meyer, J.S., Ingersoll, C.G., McDonald, L.L. & M.S. Boyce. 1986. Estimating uncertainty in population growth rates: Jackknife vs Bootstrap techniques. Ecology, 67(5): 1156-1166.
 
-  Moguedet, P. & N. PÈrez. Estimation of Megrim (Lepidorhombus whiffiagonis) growth parameters, for males and females, from the ICES division VII: fitting to the V. Bertalanffy model using, resampling techniques, as well as several adjustable central values (mean, median and mode length at age). ICES CM 1988/G: 9. 18 pp.
+  Moguedet, P. & N. P√©rez. Estimation of Megrim (Lepidorhombus whiffiagonis) growth parameters, for males and females, from the ICES division VII: fitting to the V. Bertalanffy model using, resampling techniques, as well as several adjustable central values (mean, median and mode length at age). ICES CM 1988/G: 9. 18 pp.
 
   Quinn,T.J. & R.B. Deriso. 1999. Quantitative Fish Dynamics. Oxford University Press, 542 pp.
 
