@@ -70,7 +70,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
             cex.lab = 1.2)
         plot(p2.t ~ x.p2.t, xlab = paste("Talla (", unid, ")", sep=""), 
-            ylab = " Proporción     Madurez", main = "Curva de Madurez")
+            ylab = " ProporciÃ³n     Madurez", main = "Curva de Madurez")
         rangt <- seq(min(mad.tal.dat$tal), max(mad.tal.dat$tal), 
             by = 0.2)
         lines(rangt, ilogit(mad.tal.ori$coef[1] + rangt * mad.tal.ori$coef[2]), 
@@ -80,7 +80,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         x0.t <- (-mad.tal.ori$coef[1])/mad.tal.ori$coef[2]
         segments(-0.5, 0.5, x0.t, 0.5, lty = 3)
         segments(x0.t, 0.5, x0.t, -1, lty = 3)
-        legend("bottomright", c("Predicción Original", "Predicción Bootstrap"), 
+        legend("bottomright", c("PredicciÃ³n Original", "PredicciÃ³n Bootstrap"), 
         col = c("red", "blue"), lty = c(2, 3), lwd = c(2, 
         2), bty="n")
         
@@ -90,15 +90,15 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         r.t <- ilogit(mad.tal.ori$coef[1] + x.p2.t * mad.tal.ori$coef[2])
         res.t <- (r.t - p2.t)
         res.t <- (res.t - mean(res.t))/sd(res.t)
-        plot(res.t ~ r.t, ylab = "Resíduos estandarizados", xlab = "Predicciones", 
-            main = "Original: Análisis de Resíduos" )
+        plot(res.t ~ r.t, ylab = "ResÃ­duos estandarizados", xlab = "Predicciones", 
+            main = "Original: AnÃ¡lisis de ResÃ­duos" )
         abline(h = 0, lty = 3)
         hist(L50, main = "BOOTSTRAP", xlab = paste("L50 (", unid, 
             ")", sep=""), ylab = "Frecuencia")
-        qqnorm(L50, xlab = "Cuantiles teóricos", ylab = "Cuantiles-L50 ", 
+        qqnorm(L50, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-L50 ", 
             main = "BOOTSTRAP")
         qqline(L50)
-        mtext(outer = T, "Talla de Madurez: Gráficos Diagnóstico" , 
+        mtext(outer = T, "Talla de Madurez: GrÃ¡ficos DiagnÃ³stico" , 
             side = 3, cex = 1.2)
         graphics.off()
         res <- list(ntal = ntal, glm.ori = mad.tal.ori, b0.boot = b0.boot, 
@@ -135,7 +135,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         par.ori <- round(c(coef(mad.eda.ori), -coef(mad.eda.ori)[1]/coef(mad.eda.ori)[2]), 
             4)
         par <- cbind(par.ori, par.boot)
-        dimnames(par)[[1]] <- c("B0", "B1", "E50(año)")
+        dimnames(par)[[1]] <- c("B0", "B1", "E50(aÃ±o)")
         dimnames(par)[[2]] <- c("Estima datos", "Estima boot", "CV boot")
         if (sexo == "A") 
             pdf(file = paste(especie, "_madedad_plots.pdf", sep = ""), width = 9, 
@@ -150,7 +150,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
             widths = c(3, 3), heights = c(1.5, 1.5))
         par(oma = c(2, 2, 3, 2), font = 3, cex = 1, cex.main = 1.2, 
             cex.lab = 1.2)
-        plot(p2.e ~ x.p2.e, xlab = "Edad (año)", ylab = " Proporción  Madurez", 
+        plot(p2.e ~ x.p2.e, xlab = "Edad (aÃ±o)", ylab = " ProporciÃ³n  Madurez", 
             main = "Curva de  Madurez")
         rang <- seq(min(mad.eda.dat$eda), max(mad.eda.dat$eda), 
             by = 0.2)
@@ -161,7 +161,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         x0.e <- (-mad.eda.ori$coef[1])/mad.eda.ori$coef[2]
         segments(-0.5, 0.5, x0.e, 0.5, lty = 3)
         segments(x0.e, 0.5, x0.e, -1, lty = 3)
-        legend("bottomright", c("Predicción Original", "Predicción Bootstrap"), 
+        legend("bottomright", c("PredicciÃ³n Original", "PredicciÃ³n Bootstrap"), 
             col = c("red", "blue"), lty = c(2, 3), lwd = c(2, 
                 2), bty="n")
         res.eda <- residuals(mad.eda.ori)
@@ -170,14 +170,14 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         r.e <- ilogit(mad.eda.ori$coef[1] + x.p2.e * mad.eda.ori$coef[2])
         res.e <- (r.e - p2.e)
         res.e <- (res.e - mean(res.e))/sd(res.e)
-        plot(res.e ~ r.e, ylab = "Resíduos estandarizados", xlab = " Predicciones ", 
-            main = "Original: Análisis de Resíduos" )
+        plot(res.e ~ r.e, ylab = "ResÃ­duos estandarizados", xlab = " Predicciones ", 
+            main = "Original: AnÃ¡lisis de ResÃ­duos" )
         abline(h = 0, lty = 3)
-        hist(E50, main = "BOOTSTRAP", xlab = "E50(año)", ylab = "Frecuencia")
-        qqnorm(E50, xlab = "Cuantiles teóricos", ylab = "Cuantiles-E50 ", 
+        hist(E50, main = "BOOTSTRAP", xlab = "E50(aÃ±o)", ylab = "Frecuencia")
+        qqnorm(E50, xlab = "Cuantiles teÃ³ricos", ylab = "Cuantiles-E50 ", 
             main = "BOOTSTRAP")
         qqline(E50)
-        mtext(outer = T, "Edad de Madurez: Gráficos Diagnóstico" , 
+        mtext(outer = T, "Edad de Madurez: GrÃ¡ficos DiagnÃ³stico" , 
             side = 3, cex = 1.2)
         graphics.off()
         res <- list(neda = neda, glm.ori = mad.eda.ori, b0.boot = b0.boot, 
@@ -198,7 +198,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
     if (sex == F) {
         mad.tal.res <- mad.tal(dat, "A")
         sink(file = paste(especie,"_madtal_resultados.txt", sep = ""))
-        cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
+        cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
             format(Sys.time(), "%X"))
         cat("\n")
         cat("\n")
@@ -221,7 +221,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         print(summary(mad.tal.res$glm.ori))
         cat("\n")
         cat("\n")
-        cat("PARÁMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
+        cat("PARÃMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
         cat("\n")
         print(mad.tal.res$parametro)
         sink()
@@ -229,7 +229,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         if (edad == T) {
             mad.eda.res <- mad.eda(dat, "A")
             sink(file = paste(especie, "_madedad_resultados.txt", sep = ""))
-            cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", 
+            cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", 
                 "Hora:", format(Sys.time(), "%X"))
             cat("\n")
             cat("\n")
@@ -252,7 +252,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
             print(summary(mad.eda.res$glm.ori))
             cat("\n")
             cat("\n")
-            cat("PARÁMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", 
+            cat("PARÃMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", 
                 "\n")
             cat("\n")
             print(mad.eda.res$parametro)
@@ -267,7 +267,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         mad.tal.resf <- mad.tal(datf, "F")
         mad.tal.resm <- mad.tal(datm, "M")
         sink(file = paste(especie, "_madtalhembras_resultados.txt", sep = ""))
-        cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
+        cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
             format(Sys.time(), "%X"))
         cat("\n")
         cat("\n")
@@ -289,12 +289,12 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         print(summary(mad.tal.resf$glm.ori))
         cat("\n")
         cat("\n")
-        cat("PARÁMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
+        cat("PARÃMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
         cat("\n")
         print(mad.tal.resf$parametro)
         sink()
         sink(file = paste(especie,"_madtalmachos_resultados.txt", sep = ""))
-        cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
+        cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", "Hora:", 
             format(Sys.time(), "%X"))
         cat("\n")
         cat("\n")
@@ -316,7 +316,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
         print(summary(mad.tal.resm$glm.ori))
         cat("\n")
         cat("\n")
-        cat("PARÁMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
+        cat("PARÃMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", "\n")
         cat("\n")
         print(mad.tal.resm$parametro)
         sink()
@@ -325,7 +325,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
             mad.eda.resf <- mad.eda(datf, "F")
             mad.eda.resm <- mad.eda(datm, "M")
             sink(file = paste(especie, "_madedadhembras_resultados.txt", sep = ""))
-            cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", 
+            cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", 
                 "Hora:", format(Sys.time(), "%X"))
             cat("\n")
             cat("\n")
@@ -348,13 +348,13 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
             print(summary(mad.eda.resf$glm.ori))
             cat("\n")
             cat("\n")
-            cat("PARÁMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", 
+            cat("PARÃMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", 
                 "\n")
             cat("\n")
             print(mad.eda.resf$parametro)
             sink()
             sink(file = paste(especie, "_madedadmachos_resultados.txt", sep = ""))
-            cat("Día:", format(Sys.time(), "%d-%b-%Y"), "   ", 
+            cat("DÃ­a:", format(Sys.time(), "%d-%b-%Y"), "   ", 
                 "Hora:", format(Sys.time(), "%X"))
             cat("\n")
             cat("\n")
@@ -377,7 +377,7 @@ function (especie = "nombre especie", cl = 1, unid = "cm", edad = T,
             print(summary(mad.eda.resm$glm.ori))
             cat("\n")
             cat("\n")
-            cat("PARÁMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", 
+            cat("PARÃMETROS ESTIMADOS: ORIGINALES-BOOTSTRAP", 
                 "\n")
             cat("\n")
             print(mad.eda.resm$parametro)
