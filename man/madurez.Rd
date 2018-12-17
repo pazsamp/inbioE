@@ -2,27 +2,27 @@
 \alias{madurez}
 \title{Madurez Sexual en Talla y Edad}
 \description{
-Calcula la talla y la edad de madurez sexual aplicando un glm con errores binomiales. Mediante bootstrap no paramÈtrico estima los coeficientes de variaciÛn de: los par·metros de la funciÛn, la L50 y la A50.
+Calcula la talla y la edad de madurez sexual aplicando un glm con errores binomiales. Mediante bootstrap no param√©trico estima los coeficientes de variaci√≥n de: los par√°metros de la funci√≥n, la L50 y la A50.
 }
 \usage{
 madurez(especie = "nombre especie", cl = 1, unid = "cm", edad = T, sex = F, n = 1000)
 }
 \arguments{
-  \item{especie}{Nombre del archivo donde est·n los datos de entrada, sin la extensiÛn y sin el directorio.}
+  \item{especie}{Nombre del archivo donde est√°n los datos de entrada, sin la extensi√≥n y sin el directorio.}
   \item{cl}{Intervalo de talla de la especie. El valor por defecto es 1.}
   \item{unid}{Unidad de los datos de talla: cm o mm. Por defecto unid="cm"}
   \item{edad}{Si edad=T, se calcula la edad de madurez. Si edad=F, el proceso no calcula la edad de madurez. Por defecto edad=T.}
   \item{sex}{Si sex=F, el proceso analiza los datos de machos y hembras conjuntamente. Si sex=T, se analizan separadamente machos y hembras. Por defecto sex=F.}
-  \item{n}{N˙mero de rÈplicas bootstrap. El n˙mero recomendado es 1000.}
+  \item{n}{N√∫mero de r√©plicas bootstrap. El n√∫mero recomendado es 1000.}
 }
 
 \value{
-  Dos archivo "txt" con los resultados de los datos originales y de las rÈplicas bootstrap y su coeficiente de variaciÛn,uno para madurez en talla y otro para madurez en edad.
+  Dos archivo "txt" con los resultados de los datos originales y de las r√©plicas bootstrap y su coeficiente de variaci√≥n,uno para madurez en talla y otro para madurez en edad.
 
-  Dos archivos "pdf" con las gr·ficas del ajuste con datos originales y bootstrap, las gr·ficas del an·lisis de resÌduos del ajuste de los datos originales y an·lisis de las rÈplicas bootstrap, un archivo para madurez en talla y otro para madurez 
+  Dos archivos "pdf" con las gr√°ficas del ajuste con datos originales y bootstrap, las gr√°ficas del an√°lisis de res√≠duos del ajuste de los datos originales y an√°lisis de las r√©plicas bootstrap, un archivo para madurez en talla y otro para madurez 
   en edad.           
 
-  Si el proceso se realiza separadamente para machos y hembras, los archivos de salida tambiÈn son independientes.
+  Si el proceso se realiza separadamente para machos y hembras, los archivos de salida tambi√©n son independientes.
 
 }
 \references{
@@ -38,12 +38,12 @@ madurez(especie = "nombre especie", cl = 1, unid = "cm", edad = T, sex = F, n = 
 
 \examples{
 ## Requiere que exista el archivo "lepwhi2004.csv" en el directorio de trabajo
-## Calcula la talla y la edad de madurez sexual y su coeficiente de variaciÛn conjuntamente para ambos sexos
+## Calcula la talla y la edad de madurez sexual y su coeficiente de variaci√≥n conjuntamente para ambos sexos
    madurez (especie="lepwhi2004", sex=F)
 
 ## Requiere que exista el archivo "cangrejoreal.csv" en el directorio de trabajo
-## Calcula sÛlo la talla de madurez sexual (edad=F) y su coeficiente de variaciÛn separadamente para machos y 
-## hembras. La talla es en milÌmetros.
+## Calcula s√≥lo la talla de madurez sexual (edad=F) y su coeficiente de variaci√≥n separadamente para machos y 
+## hembras. La talla es en mil√≠metros.
    madurez(especie="cangrejoreal", unid="mm", edad=F, sex=T)
 }
 
